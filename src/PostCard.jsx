@@ -36,7 +36,7 @@ function PostCard({ id, userId, title, body }) {
 
         .card-container:hover {
           transform: scale(1.05);
-          border: 2px solid #fecaca;
+          border: 2px solid #000000;
           background-color: #fce7f3 !important;
         }
 
