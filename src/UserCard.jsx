@@ -6,7 +6,6 @@ function UserCard(props) {
 
   console.log(Object.entries(rest));
 
-  // Fungsi handler
   function handleClick() {
     setClicked(true);
   }
