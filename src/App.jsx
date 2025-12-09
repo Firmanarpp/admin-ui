@@ -1,38 +1,30 @@
-import { useState, useEffect } from "react";
 import "./App.css";
 import SignInPage from "./pages/signIn";
 import SignUpPage from "./pages/signUp";
+import ErrorPage from "./pages/error";
+import DashboardPage from "./pages/dashboard";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(
-    window.location.pathname === '/signin' ? 'signin' : 'signup'
-  );
-
-  useEffect(() => {
-    const handlePopState = () => {
-      setCurrentPage(
-        window.location.pathname === '/signin' ? 'signin' : 'signup'
-      );
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    
-    // Listen for custom navigation events
-    window.addEventListener('navigate', (e) => {
-      const path = e.detail;
-      setCurrentPage(path === '/signin' ? 'signin' : 'signup');
-      window.history.pushState({}, '', path);
-    });
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-      window.removeEventListener('navigate', handlePopState);
-    };
-  }, []);
+  const myRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <DashboardPage/>,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/login",
+      element: <SignInPage />,
+    },
+    {
+      path: "/register",
+      element: <SignUpPage />,
+    },
+  ]);
 
   return (
     <>
-      {currentPage === 'signin' ? <SignInPage /> : <SignUpPage />}
+      <RouterProvider router={myRouter} />
     </>
   );
 }
