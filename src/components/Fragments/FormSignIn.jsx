@@ -1,77 +1,77 @@
-import React from "react";
-import LabeledInput from "../Elements/LabeledInput";
-import CheckBox from "../Elements/CheckBox";
-import Button from "../Elements/Button";
+import React from 'react'
+import LabeledInput from '../Elements/LabeledInput';
+import CheckBox from '../Elements/CheckBox';
+import Button from '../Elements/Button';
 import { Link } from "react-router-dom";
 
-function FormSignIn() {
+function FormSignIn({ onToggle }) {
   return (
     <>
-      {/* form start */}
-      <div className="mt-16">
-        <form action="">
-          <div className="mb-6">
-            <LabeledInput
-              label="Email Address"
-              id="email"
-              type="email"
-              placeholder="hello@example.com"
-              name="email"
-            />
-          </div>
-          <div className="mb-6">
-            <LabeledInput
-              label="Password"
-              id="password"
-              type="password"
-              placeholder="•••••••••"
-              name="password"
-            />
-          </div>
-          <div className="mb-6 flex items-center gap-2">
-            <CheckBox
-              label="Keep me signed in"
-              id="status"
-              name="status"
-              type="checkbox"
-            />
-          </div>
-          <div>
-            <Button>Login</Button>
-          </div>
-        </form>
-      </div>
-      {/* form end */}
-      {/* teks start */}
-      <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
-        <div className="border border-gray-05 w-full"></div>
-        <div class="px-2 bg-special-mainBg absolute"> or sign in with</div>
-      </div>
-      {/* teks end */}
-      {/* sign in with google start */}
-      <div>
-        <Button type="button" variant="secondary">
-          <span className="flex items-center justify-center">
-            <svg
-              class="h-6 w-6 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="800px"
-              height="800px"
-              viewBox="-0.5 0 48 48"
-              version="1.1"
-            >
-              <title>Google-color</title> <desc>Created with Sketch.</desc>
-              <defs> </defs>
-              <g
-                id="Icons"
-                stroke="none"
-                stroke-width="1"
-                fill="none"
-                fill-rule="evenodd"
-              >
-                <g id="Color-" transform="translate(-401.000000, -860.000000)">
-                  <g id="Google" transform="translate(401.000000, 860.000000)">
+        {/* form start */}
+        <div className="mt-16">
+          <form action="">
+            <div className="mb-6">
+                <LabeledInput 
+                label="Email Address"
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                />
+            </div>
+            <div className="mb-6">
+                <LabeledInput 
+                label="Password"
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                name="password"
+                />
+            </div>
+            <div className="mb-6">
+                <CheckBox 
+                label="Keep me sigined in"
+                id="rememberMe"
+                type="checkbox"
+                name="rememberMe"
+                />
+            </div>
+              <Button>
+                Login
+               </Button> 
+            </form>
+        </div>
+        {/* form end */}
+        {/* teks start */}
+        <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
+          <div className="border border-gray-05 w-full"></div>
+          <div className="px-2 bg-special-mainBg absolute"> or sign in with</div>
+        </div>
+        {/* teks end */}
+        {/* sign in with google start */}
+        <div className="mb-8"> 
+            <Button type="button" variant="secondary">
+              <span className="flex items-center justify-center">
+                <svg
+                  className="h-6 w-6 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="800px"
+                  height="800px"
+                  viewBox="-0.5 0 48 48"
+                  version="1.1"
+                >
+                  <title>Google-color</title> <desc>Created with Sketch.</desc>
+                  <defs> </defs>
+                  <g
+                  id="Icons"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                  >
+                  <g id="Color-" transform="translate(-401.000000, -860.000000)">
+                    <g id="Google" transform="translate(401.000000, 860.000000)">
                     <path
                       d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
                       id="Fill-1"
@@ -92,24 +92,24 @@ function FormSignIn() {
                       id="Fill-4"
                       fill="#4285F4"
                     ></path>
+                    </g>
                   </g>
-                </g>
-              </g>
-            </svg>
-            Continue with Google
-          </span>
-        </Button>
-      </div>
-      {/* sign in with google end */}
-      {/* link start */}
-      <div className="flex justify-center">
-        <Link to="/register" className="mt-6 text-primary text-sm font-bold">
-          Create an account
-        </Link>
-      </div>
-      {/* link end */}
+                  </g>
+                </svg>
+                Continue with Google
+              </span>      
+            </Button>    
+        </div>
+        {/* sign in with google end */}
+        {/* link start */}
+        <div className="flex justify-center">
+          <Link to="/register" className="text-primary text-sm" font="bold">
+            Create an account
+          </Link>
+        </div>
+        {/* link end */}    
     </>
   );
 }
 
-export default FormSignIn;
+export default FormSignIn

@@ -1,91 +1,86 @@
-import React from "react";
-import LabeledInput from "../Elements/LabeledInput";
-import Button from "../Elements/Button";
+import React from 'react'
+import LabeledInput from '../Elements/LabeledInput';
+import CheckBox from '../Elements/CheckBox';
+import Button from '../Elements/Button';
 import { Link } from "react-router-dom";
 
-function FormSignUp() {
+function FormSignup({ onToggle }) {
   return (
     <>
-      {/* title start */}
-      <div className="mt-8 mb-8">
-        <h1 className="text-2xl font-bold text-center">Create an account</h1>
-      </div>
-      {/* title end */}
-      {/* form start */}
-      <div>
-        <form action="">
-          <div className="mb-6">
-            <LabeledInput
-              label="Name"
-              id="name"
-              type="text"
-              placeholder="Tanzir Rahman"
-              name="name"
-            />
-          </div>
-          <div className="mb-6">
-            <LabeledInput
-              label="Email Address"
-              id="email"
-              type="email"
-              placeholder="hello@example.com"
-              name="email"
-            />
-          </div>
-          <div className="mb-6">
-            <LabeledInput
-              label="Password"
-              id="password"
-              type="password"
-              placeholder="•••••••••"
-              name="password"
-            />
-          </div>
-          <div className="mb-6">
-            <p className="text-xs text-gray-03">
-              By continuing, you agree to our{" "}
-              <a href="#" className="text-primary">
-                terms of service
-              </a>
-              .
-            </p>
-          </div>
-          <div>
-            <Button>Sign up</Button>
-          </div>
-        </form>
-      </div>
-      {/* form end */}
-      {/* teks start */}
-      <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
-        <div className="border border-gray-05 w-full"></div>
-        <div className="px-2 bg-special-mainBg absolute">or sign up with</div>
-      </div>
-      {/* teks end */}
-      {/* sign up with google start */}
-      <div>
-        <Button type="button" variant="secondary">
-          <span className="flex items-center justify-center">
-            <svg
-              className="h-6 w-6 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              width="800px"
-              height="800px"
-              viewBox="-0.5 0 48 48"
-              version="1.1"
-            >
-              <title>Google-color</title> <desc>Created with Sketch.</desc>
-              <defs> </defs>
-              <g
-                id="Icons"
-                stroke="none"
-                strokeWidth="1"
-                fill="none"
-                fillRule="evenodd"
-              >
-                <g id="Color-" transform="translate(-401.000000, -860.000000)">
-                  <g id="Google" transform="translate(401.000000, 860.000000)">
+        {/* form start */}
+        <div className="mt-16">
+          <form action="">
+            <div className="mb-6">
+                <LabeledInput 
+                label="Name"
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                name="name"
+                />
+            </div>
+            <div className="mb-6">
+                <LabeledInput 
+                label="Email Address"
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                />
+            </div>
+            <div className="mb-6">
+                <LabeledInput 
+                label="Password"
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                name="password"
+                />
+            </div>
+            <div className="mb-6">
+                <CheckBox 
+                label="I agree to the terms and conditions"
+                id="terms"
+                type="checkbox"
+                name="terms"
+                />
+            </div>
+              <Button>
+                Sign Up
+               </Button> 
+            </form>
+        </div>
+        {/* form end */}
+        {/* teks start */}
+        <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
+          <div className="border border-gray-05 w-full"></div>
+          <div className="px-2 bg-special-mainBg absolute"> or sign up with</div>
+        </div>
+        {/* teks end */}
+        {/* sign in with google start */}
+        <div className="mb-8"> 
+            <Button type="button" variant="secondary">
+              <span className="flex items-center justify-center">
+                <svg
+                  className="h-6 w-6 mr-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="800px"
+                  height="800px"
+                  viewBox="-0.5 0 48 48"
+                  version="1.1"
+                >
+                  <title>Google-color</title> <desc>Created with Sketch.</desc>
+                  <defs> </defs>
+                  <g
+                  id="Icons"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                  >
+                  <g id="Color-" transform="translate(-401.000000, -860.000000)">
+                    <g id="Google" transform="translate(401.000000, 860.000000)">
                     <path
                       d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
                       id="Fill-1"
@@ -106,27 +101,24 @@ function FormSignUp() {
                       id="Fill-4"
                       fill="#4285F4"
                     ></path>
+                    </g>
                   </g>
-                </g>
-              </g>
-            </svg>
-            Continue with Google
-          </span>
-        </Button>
-      </div>
-      {/* sign up with google end */}
-      {/* link start */}
-      <div className="flex justify-center">
-        <p className="mt-6 text-sm text-gray-03">
-          Already have an account?{" "}
-          <><Link to="/login" className="text-primary font-bold">
-            Sign in here
-          </Link></>
-        </p>
-      </div>
-      {/* link end */}
+                  </g>
+                </svg>
+                Continue with Google
+              </span>      
+            </Button>    
+        </div>
+        {/* sign in with google end */}
+        {/* link start */}
+        <div className="flex justify-center">
+          <Link to="/login" className="text-primary text-sm" font="bold">
+            Sign In Here
+          </Link>
+        </div>
+        {/* link end */}    
     </>
   );
 }
 
-export default FormSignUp;
+export default FormSignup
