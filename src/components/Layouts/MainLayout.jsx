@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext.jsx";
 import { AuthContext } from "../../context/authContext.jsx";
 import { logoutService } from "../../services/authService.jsx";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function MainLayout(props) {
   const { children } = props;
@@ -37,10 +39,12 @@ function MainLayout(props) {
   ];
 
   const { user, logout } = useContext(AuthContext);
+  const [loggingOut, setLoggingOut] = useState(false);
   console.log(user);
 
   const handleLogout = async () => {
     try {
+      setLoggingOut(true);
       await logoutService();
       logout();
     } catch (err) {
@@ -48,11 +52,22 @@ function MainLayout(props) {
       if (err.status === 401) {
         logout();
       }
+    } finally {
+      setLoggingOut(false);
     }
   };
 
   return (
     <>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loggingOut}
+      >
+        <div className="flex flex-col items-center">
+          <CircularProgress color="inherit" />
+          <div className="mt-2">Logging Out</div>
+        </div>
+      </Backdrop>
       <div className={`flex min-h-screen ${theme.name}`}>
         <aside className="w-28 sm:w-64 bg-defaultBlack text-special-bg2 flex flex-col justify-between px-7 py-12 fixed h-screen">
           <div>

@@ -3,52 +3,95 @@ import LabeledInput from '../Elements/LabeledInput';
 import CheckBox from '../Elements/CheckBox';
 import Button from '../Elements/Button';
 import { Link } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-function FormSignup({ onToggle }) {
+const SignUpSchema = Yup.object().shape({
+  name: Yup.string().required("Nama wajib diisi"),
+  email: Yup.string().email("Email tidak valid").required("Email wajib diisi"),
+  password: Yup.string().required("Password wajib diisi"),
+});
+
+function FormSignup({ onSubmit }) {
   return (
     <>
         {/* form start */}
         <div className="mt-16">
-          <form action="">
-            <div className="mb-6">
-                <LabeledInput 
-                label="Name"
-                id="name"
-                type="text"
-                placeholder="Enter your name"
-                name="name"
-                />
-            </div>
-            <div className="mb-6">
-                <LabeledInput 
-                label="Email Address"
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                name="email"
-                />
-            </div>
-            <div className="mb-6">
-                <LabeledInput 
-                label="Password"
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                name="password"
-                />
-            </div>
-            <div className="mb-6">
-                <CheckBox 
-                label="I agree to the terms and conditions"
-                id="terms"
-                type="checkbox"
-                name="terms"
-                />
-            </div>
-              <Button>
-                Sign Up
-               </Button> 
-            </form>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+            }}
+            validationSchema={SignUpSchema}
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                await onSubmit(values.name, values.email, values.password);
+              } finally {
+                setSubmitting(false);
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <div className="mb-6">
+                  <Field name="name">
+                    {({ field }) => (
+                      <LabeledInput 
+                        {...field}
+                        label="Name"
+                        id="name"
+                        type="text"
+                        placeholder="John Doe"
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage
+                    name="name"
+                    component="p"
+                    className="text-red-500 text-xs mt-1"
+                  />
+                </div>
+                <div className="mb-6">
+                  <Field name="email">
+                    {({ field }) => (
+                      <LabeledInput 
+                        {...field}
+                        label="Email Address"
+                        id="email"
+                        type="email"
+                        placeholder="hello@example.com"
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage
+                    name="email"
+                    component="p"
+                    className="text-red-500 text-xs mt-1"
+                  />
+                </div>
+                <div className="mb-6">
+                  <Field name="password">
+                    {({ field }) => (
+                      <LabeledInput 
+                        {...field}
+                        label="Password"
+                        id="password"
+                        type="password"
+                        placeholder="●●●●●●●●●●●●●●"
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage
+                    name="password"
+                    component="p"
+                    className="text-red-500 text-xs mt-1"
+                  />
+                </div>
+                <Button>{isSubmitting ? "Loading..." : "Register"}</Button>
+              </Form>
+            )}
+          </Formik>
         </div>
         {/* form end */}
         {/* teks start */}
@@ -64,7 +107,7 @@ function FormSignup({ onToggle }) {
                 <svg
                   className="h-6 w-6 mr-2"
                   xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
                   width="800px"
                   height="800px"
                   viewBox="-0.5 0 48 48"
@@ -75,9 +118,9 @@ function FormSignup({ onToggle }) {
                   <g
                   id="Icons"
                   stroke="none"
-                  stroke-width="1"
+                  strokeWidth="1"
                   fill="none"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   >
                   <g id="Color-" transform="translate(-401.000000, -860.000000)">
                     <g id="Google" transform="translate(401.000000, 860.000000)">
